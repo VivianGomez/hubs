@@ -16,14 +16,14 @@ AFRAME.registerComponent("pen-laser", {
   },
 
   init() {
-    let material = new THREE.MeshStandardMaterial({ color: "red", opacity: 0.5, transparent: true, visible: true });
+    let material = new THREE.MeshStandardMaterial({ color: "red", opacity: 1, transparent: true, visible: true }); //MOD opacity
     const quality = window.APP.store.materialQualitySetting;
     material = convertStandardMaterial(material, quality);
 
     const tipMaterial = material.clone();
 
     const lineCurve = new THREE.LineCurve3(new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 0, 2));
-    const geometry = new THREE.TubeBufferGeometry(lineCurve, 2, 0.003, 8, true);
+    const geometry = new THREE.TubeBufferGeometry(lineCurve, 2, 0.03, 8, true); //MOD radius
     this.laser = new THREE.Mesh(geometry, material);
 
     this.laserTip = new THREE.Mesh(new THREE.SphereBufferGeometry(1, 8, 6), tipMaterial);
